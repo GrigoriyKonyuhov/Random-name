@@ -1,14 +1,14 @@
 import sys
-from PyQt5 import uic
+from UI import Ui_MainWindow
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from random import randint
 
 
-class Yellow_circles(QMainWindow):
+class Yellow_circles(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi(r'UI.ui', self)
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.btn_clicked)
         self.painted = False
 
@@ -16,7 +16,7 @@ class Yellow_circles(QMainWindow):
         if self.painted:
             painter = QPainter()
             painter.begin(self)
-            painter.setBrush(QColor(255, 255, 0))
+            painter.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
             for i in range(7):
                 x, y = randint(7, 418), randint(7, 418)
                 rad = randint(8, 748)
